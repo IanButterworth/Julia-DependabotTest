@@ -1,0 +1,3 @@
+# Julia manifest files should not be checked in for libraries
+Manifest.toml
+JuliaManifest.toml
