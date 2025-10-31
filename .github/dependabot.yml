@@ -6,11 +6,30 @@
 version: 2
 enable-beta-ecosystems: true
 updates:
-  - package-ecosystem: "julia" # See documentation for possible values
-    directories:
-      - "/BasicPackage.jl"
-      - "/ManifestPackage.jl"
-      - "/VersionedManifestPackage.jl"
-      - "/WorkspacePackage.jl"
+  # Non-workspace packages - can be updated independently
+  - package-ecosystem: "julia"
+    directory: "/BasicPackage.jl"
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/ManifestPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/VersionedManifestPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  # Workspace packages - grouped together since they share a manifest
+  - package-ecosystem: "julia"
+    directories:
+      - "/WorkspacePackage.jl/SubPackageA"
+      - "/WorkspacePackage.jl/SubPackageB"
+    schedule:
+      interval: "weekly"
+    groups:
+      workspace:
+        patterns:
+          - "*"
