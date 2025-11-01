@@ -23,7 +23,7 @@ docker build --no-cache -f Dockerfile.updater-core -t ghcr.io/dependabot/dependa
 docker build --no-cache -f julia/Dockerfile -t ghcr.io/dependabot/dependabot-updater-julia .
 
 # Run Dependabot update using the test configuration
-script/dependabot update -f /path/to/Julia-DependabotTest/dependabot-test.yaml -o results.yml
+script/dependabot update -f /Users/ian/Documents/GitHub/Julia-DependabotTest/dependabot-test.yaml -o results.yml
 ```
 
 Then inspect `results.yml` for the update results which will include the PR contents.
