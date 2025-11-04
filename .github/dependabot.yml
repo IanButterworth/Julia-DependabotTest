@@ -25,8 +25,9 @@ updates:
   # Workspace packages - grouped together since they share a manifest
   - package-ecosystem: "julia"
     directories:
-      - "/WorkspacePackage1.jl/SubPackageA"
-      - "/WorkspacePackage1.jl/SubPackageB"
+    - "/WorkspacePackage1.jl"
+    - "/WorkspacePackage1.jl/SubPackageA"
+    - "/WorkspacePackage1.jl/SubPackageB"
     schedule:
       interval: "weekly"
     groups:
@@ -37,7 +38,8 @@ updates:
   # Workspace packages - NOT grouped together to show that the manifest isn't updated
   - package-ecosystem: "julia"
     directories:
-      - "/WorkspacePackage2.jl/SubPackageA"
+    - "/WorkspacePackage2.jl"
+    - "/WorkspacePackage2.jl/SubPackageA"
     schedule:
       interval: "weekly"
 
