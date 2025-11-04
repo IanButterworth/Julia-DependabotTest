@@ -33,3 +33,11 @@ updates:
       workspace:
         patterns:
           - "*"
+
+  # Workspace packages - NOT grouped together to show what happens when you dont
+  - package-ecosystem: "julia"
+    directories:
+      - "/WorkspacePackage.jl/SubPackageA"
+    schedule:
+      interval: "weekly"
+
