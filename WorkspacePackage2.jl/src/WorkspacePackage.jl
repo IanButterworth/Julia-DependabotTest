@@ -1,0 +1,3 @@
+module WorkspacePackage
+
+end

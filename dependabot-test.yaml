@@ -62,8 +62,8 @@ job:
     - "/BasicPackage.jl"
     - "/ManifestPackage.jl"
     - "/VersionedManifestPackage.jl"
-    - "/WorkspacePackage.jl/SubPackageA"
-    - "/WorkspacePackage.jl/SubPackageB"
+    - "/WorkspacePackage1.jl/SubPackageA"
+    - "/WorkspacePackage1.jl/SubPackageB"
     api-endpoint: https://api.github.com/
     hostname: github.com
     commit:

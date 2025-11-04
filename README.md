@@ -9,9 +9,10 @@ This repository contains several Julia packages demonstrating different scenario
 - **BasicPackage.jl** - Standard Julia package with Project.toml only
 - **ManifestPackage.jl** - Package with both Project.toml and Manifest.toml
 - **VersionedManifestPackage.jl** - Package with version-specific Manifest-v1.12.toml
-- **WorkspacePackage.jl** - Workspace with multiple subpackages sharing a manifest
+- **WorkspacePackage1.jl** - Workspace with multiple subpackages sharing a manifest
   - SubPackageA
   - SubPackageB
+- **WorkspacePackage2.jl** - A copy of WorkspacePackage1.jl to test independent subproject updates
 
 ## Local Testing
 
