@@ -14,7 +14,7 @@ job:
   debug:
   dependencies:
   dependency-groups:
-  - name: WorkspacePackage1
+  - name: workspacepackage1
     rules:
       patterns:
       - "*"
@@ -64,8 +64,6 @@ job:
     branch:
     directories:
     - "/WorkspacePackage1.jl"
-    - "/WorkspacePackage1.jl/SubPackageA"
-    - "/WorkspacePackage1.jl/SubPackageB"
     api-endpoint: https://api.github.com/
     hostname: github.com
     commit:
