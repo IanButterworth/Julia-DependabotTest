@@ -28,6 +28,11 @@ updates:
     - "/LibraryPackage.jl/test"
     schedule:
       interval: "weekly"
+    groups:
+      # Group all Julia package updates into a single PR:
+      all-julia-packages:
+        patterns:
+          - "*"
 
   # Workspace package
   - package-ecosystem: "julia"
