@@ -9,6 +9,3 @@ LibraryPackage = "12345678-1234-5678-1234-567812345679"
 
 [compat]
 Documenter = "1"
-
-[sources]
-LibraryPackage = {path = ".."}
