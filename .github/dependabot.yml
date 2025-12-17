@@ -4,7 +4,6 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
-enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "julia"
     directory: "/BasicPackage.jl"
@@ -18,6 +17,12 @@ updates:
 
   - package-ecosystem: "julia"
     directory: "/VersionedManifestPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  # LibraryPackage.jl - Library-style (no Manifest, like MetaGraphsNext.jl)
+  - package-ecosystem: "julia"
+    directory: "/LibraryPackage.jl"
     schedule:
       interval: "weekly"
 

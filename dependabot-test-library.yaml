@@ -59,12 +59,7 @@ job:
     repo: IanButterworth/Julia-DependabotTest
     branch:
     directories:
-    - "/BasicPackage.jl"
-    - "/ManifestPackage.jl"
-    - "/VersionedManifestPackage.jl"
     - "/LibraryPackage.jl"
-    - "/WorkspacePackage1.jl"
-    - "/WorkspacePackage1.jl/SubPackageA"
     api-endpoint: https://api.github.com/
     hostname: github.com
     commit:
