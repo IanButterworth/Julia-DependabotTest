@@ -22,7 +22,10 @@ updates:
 
   # LibraryPackage.jl - Library-style (no Manifest, like MetaGraphsNext.jl)
   - package-ecosystem: "julia"
-    directory: "/LibraryPackage.jl"
+    directories:
+    - "/LibraryPackage.jl"
+    - "/LibraryPackage.jl/docs"
+    - "/LibraryPackage.jl/test"
     schedule:
       interval: "weekly"
 
