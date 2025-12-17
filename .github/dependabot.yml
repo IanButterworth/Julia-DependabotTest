@@ -28,7 +28,6 @@ updates:
 
   # Workspace package
   - package-ecosystem: "julia"
-    directories:
-    - "/WorkspacePackage1.jl"
+    directory: "/WorkspacePackage1.jl"
     schedule:
       interval: "weekly"
