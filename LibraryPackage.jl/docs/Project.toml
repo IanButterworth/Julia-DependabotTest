@@ -8,7 +8,7 @@ MetaGraphs = "626554b9-1ddb-594c-aa3c-2596fe9399a5"
 LibraryPackage = "12345678-1234-5678-1234-567812345679"
 
 [compat]
+BenchmarkTools = "1.6.3"
 Documenter = "1"
-
 [sources]
 LibraryPackage = {path = ".."}
