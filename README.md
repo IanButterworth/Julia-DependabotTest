@@ -15,9 +15,36 @@ This repository contains several Julia packages demonstrating different scenario
   - SubPackageB
 - **WorkspacePackage2.jl** - A copy of WorkspacePackage1.jl to test independent subproject updates
 
-## Local Testing
+## Testing
 
-To test Dependabot Julia integration locally using this repository:
+### GitHub Actions (Recommended)
+
+This repository includes a GitHub Actions workflow to test custom dependabot-core branches or PRs.
+
+Go to **Actions** → **Test Dependabot Julia** → **Run workflow** and provide:
+
+| Input | Description | Examples |
+|-------|-------------|----------|
+| `dependabot_core_ref` | Branch, tag, or PR number | `main`, `ib/julia_workspaces_fixes`, `13889` |
+| `test_config` | Test configuration file | `dependabot-test-workspace.yaml` |
+| `test_directory` | Optional directory override | `/WorkspacePackage1.jl` |
+
+#### Example: Testing a PR
+
+To test [PR #13889](https://github.com/dependabot/dependabot-core/pull/13889):
+1. Go to Actions → Test Dependabot Julia → Run workflow
+2. Enter `13889` for `dependabot_core_ref`
+3. Select the test config (e.g., `dependabot-test-workspace.yaml`)
+4. Click "Run workflow"
+
+The workflow will:
+- Build dependabot-core Docker images from the PR branch
+- Run the dependabot update against this test repository
+- Upload `results.yaml` and `dependabot.log` as artifacts
+
+### Local Testing
+
+To test Dependabot Julia integration locally:
 
 ```bash
 # From the dependabot-core repository root
@@ -25,7 +52,7 @@ docker build --no-cache -f Dockerfile.updater-core -t ghcr.io/dependabot/dependa
 docker build --no-cache -f julia/Dockerfile -t ghcr.io/dependabot/dependabot-updater-julia .
 
 # Run Dependabot update using the test configuration
-script/dependabot update -f /Users/ian/Documents/GitHub/Julia-DependabotTest/dependabot-test-workspace.yaml -o results.yml 2>&1 | tee dependabot.log
+script/dependabot update -f /path/to/Julia-DependabotTest/dependabot-test-workspace.yaml -o results.yml 2>&1 | tee dependabot.log
 ```
 
 Then inspect `results.yml` for the update results which will include the PR contents.

@@ -1,0 +1,201 @@
+name: Test Dependabot Julia
+
+on:
+  workflow_dispatch:
+    inputs:
+      dependabot_core_ref:
+        description: 'dependabot-core branch, tag, or PR number (e.g., "main", "ib/julia_workspaces_fixes", or "13889" for PR)'
+        required: false
+        default: 'main'
+      test_config:
+        description: 'Test configuration file to use'
+        required: false
+        default: 'dependabot-test-workspace.yaml'
+        type: choice
+        options:
+          - dependabot-test-workspace.yaml
+          - dependabot-test.yaml
+          - dependabot-test-library.yaml
+      test_directory:
+        description: 'Override directory to test (leave empty to use config default)'
+        required: false
+        default: ''
+      dependabot_cli_version:
+        description: 'dependabot CLI version (leave empty for latest)'
+        required: false
+        default: ''
+
+jobs:
+  test-dependabot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout test repository
+        uses: actions/checkout@v4
+
+      - name: Determine dependabot-core ref
+        id: ref
+        run: |
+          INPUT_REF="${{ github.event.inputs.dependabot_core_ref }}"
+          
+          # Check if input is a PR number (all digits)
+          if [[ "$INPUT_REF" =~ ^[0-9]+$ ]]; then
+            echo "Fetching PR #${INPUT_REF} ref..."
+            PR_REF="refs/pull/${INPUT_REF}/head"
+            echo "ref=${PR_REF}" >> $GITHUB_OUTPUT
+            echo "is_pr=true" >> $GITHUB_OUTPUT
+            echo "pr_number=${INPUT_REF}" >> $GITHUB_OUTPUT
+          else
+            echo "Using branch/tag: ${INPUT_REF}"
+            echo "ref=${INPUT_REF}" >> $GITHUB_OUTPUT
+            echo "is_pr=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout dependabot-core (branch/tag)
+        if: steps.ref.outputs.is_pr == 'false'
+        uses: actions/checkout@v4
+        with:
+          repository: dependabot/dependabot-core
+          ref: ${{ steps.ref.outputs.ref }}
+          path: dependabot-core
+
+      - name: Checkout dependabot-core (PR)
+        if: steps.ref.outputs.is_pr == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: dependabot/dependabot-core
+          ref: ${{ steps.ref.outputs.ref }}
+          path: dependabot-core
+
+      - name: Show dependabot-core version
+        run: |
+          cd dependabot-core
+          echo "=== Git Info ==="
+          git log -1 --oneline
+          echo ""
+          echo "=== Branch/PR Info ==="
+          if [[ "${{ steps.ref.outputs.is_pr }}" == "true" ]]; then
+            echo "Testing PR #${{ steps.ref.outputs.pr_number }}"
+            echo "URL: https://github.com/dependabot/dependabot-core/pull/${{ steps.ref.outputs.pr_number }}"
+          else
+            echo "Testing ref: ${{ steps.ref.outputs.ref }}"
+          fi
+
+      - name: Install dependabot CLI
+        run: |
+          # Determine version: use input or fetch latest
+          if [[ -n "${{ github.event.inputs.dependabot_cli_version }}" ]]; then
+            VERSION="${{ github.event.inputs.dependabot_cli_version }}"
+            echo "Using specified version: ${VERSION}"
+          else
+            VERSION=$(curl -s https://api.github.com/repos/dependabot/cli/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+            echo "Using latest version: ${VERSION}"
+          fi
+          
+          # Download and install
+          curl -sL "https://github.com/dependabot/cli/releases/download/v${VERSION}/dependabot-v${VERSION}-linux-amd64.tar.gz" | tar xz
+          sudo mv dependabot /usr/local/bin/
+          dependabot --version
+
+      - name: Build dependabot-updater-core image
+        run: |
+          cd dependabot-core
+          docker build --no-cache -f Dockerfile.updater-core -t ghcr.io/dependabot/dependabot-updater-core .
+
+      - name: Build dependabot-updater-julia image
+        run: |
+          cd dependabot-core
+          docker build --no-cache -f julia/Dockerfile -t ghcr.io/dependabot/dependabot-updater-julia .
+
+      - name: Prepare test configuration
+        id: config
+        run: |
+          CONFIG_FILE="${{ github.event.inputs.test_config }}"
+          TEST_DIR="${{ github.event.inputs.test_directory }}"
+          
+          # Copy config file
+          cp "$CONFIG_FILE" test-config.yaml
+          
+          # Update repo name to match this repository
+          sed -i "s|repo: IanButterworth/Julia-DependabotTest|repo: ${{ github.repository }}|g" test-config.yaml
+          
+          # If test directory override is specified, update the config
+          if [[ -n "$TEST_DIR" ]]; then
+            echo "Overriding test directory to: $TEST_DIR"
+            # Use yq or sed to update directories
+            sed -i "s|directories:|directories:\n    - \"$TEST_DIR\"|g" test-config.yaml
+            # Remove other directory entries (simple approach)
+            # This is a simplified approach - for complex configs, consider using yq
+          fi
+          
+          echo "=== Test Configuration ==="
+          cat test-config.yaml
+
+      - name: Run Dependabot update
+        id: dependabot
+        run: |
+          cd dependabot-core
+          
+          # Run the dependabot update script
+          script/dependabot update \
+            -f "${{ github.workspace }}/test-config.yaml" \
+            -o "${{ github.workspace }}/results.yaml" \
+            2>&1 | tee "${{ github.workspace }}/dependabot.log"
+          
+          # Check if results file was created
+          if [[ -f "${{ github.workspace }}/results.yaml" ]]; then
+            echo "results_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "results_exist=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Display results summary
+        if: always()
+        run: |
+          echo "=== Dependabot Update Results ==="
+          
+          if [[ -f results.yaml ]]; then
+            echo ""
+            echo "--- Results YAML ---"
+            cat results.yaml
+          else
+            echo "No results.yaml file generated"
+          fi
+          
+          echo ""
+          echo "=== Log Highlights ==="
+          if [[ -f dependabot.log ]]; then
+            # Show errors and warnings
+            echo "--- Errors ---"
+            grep -i "error\|exception\|failed" dependabot.log || echo "No errors found"
+            echo ""
+            echo "--- Created PRs ---"
+            grep -i "create_pull_request\|pr_created\|pull request" dependabot.log || echo "No PR creation messages found"
+          fi
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependabot-results
+          path: |
+            results.yaml
+            dependabot.log
+            test-config.yaml
+          retention-days: 30
+
+      - name: Check for failures
+        if: always()
+        run: |
+          if [[ -f dependabot.log ]]; then
+            if grep -qi "error\|exception\|failed" dependabot.log; then
+              echo "::warning::Potential errors found in dependabot.log - check artifacts for details"
+            fi
+          fi
+          
+          if [[ ! -f results.yaml ]]; then
+            echo "::error::No results.yaml generated - dependabot update may have failed"
+            exit 1
+          fi
