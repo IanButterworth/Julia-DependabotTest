@@ -14,6 +14,7 @@ on:
         type: choice
         options:
           - dependabot-test-workspace.yaml
+          - dependabot-test-different-compat.yaml
           - dependabot-test.yaml
           - dependabot-test-library.yaml
       test_directory:

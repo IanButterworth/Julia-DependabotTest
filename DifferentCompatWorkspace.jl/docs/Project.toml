@@ -1,0 +1,17 @@
+name = "DifferentCompatWorkspaceDocs"
+uuid = "77777777-7777-7777-7777-777777777778"
+authors = ["Test User <test@example.com>"]
+version = "0.1.0"
+
+# This is the docs subpackage.
+# Note: JSON compat is "0.21" here, but "0.21.4" in the root Project.toml.
+# This tests that Dependabot updates each file with its specific compat bound.
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[compat]
+JSON = "0.21"
+Documenter = "1"
+julia = "1.10"

@@ -14,6 +14,9 @@ This repository contains several Julia packages demonstrating different scenario
   - SubPackageA
   - SubPackageB
 - **WorkspacePackage2.jl** - A copy of WorkspacePackage1.jl to test independent subproject updates
+- **DifferentCompatWorkspace.jl** - Workspace testing [issue #13865](https://github.com/dependabot/dependabot-core/issues/13865): same dependency with different compat specifiers in root vs docs/test
+  - docs/
+  - test/
 
 ## Testing
 
