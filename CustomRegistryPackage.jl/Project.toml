@@ -1,0 +1,11 @@
+name = "CustomRegistryPackage"
+uuid = "22222222-2222-2222-2222-222222222222"
+authors = ["Test User <test@example.com>"]
+version = "0.1.0"
+
+[deps]
+QuadDIRECT = "dae52e8d-d0ce-5f51-9c86-f0474fab3f14"
+
+[compat]
+QuadDIRECT = "0.1"
+julia = "1.10"
