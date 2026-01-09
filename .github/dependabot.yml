@@ -40,6 +40,16 @@ updates:
     schedule:
       interval: "weekly"
 
+  # DifferentCompatWorkspace.jl
+  - package-ecosystem: "julia"
+    directory: "/DifferentCompatWorkspace.jl"
+    schedule:
+      interval: "weekly"
+    groups:
+      all-julia-packages:
+        patterns:
+          - "*"
+
   # CustomRegistryPackage.jl - Uses HolyLabRegistry custom registry
   # Note: Custom Julia registries are configured via dependabot-core job files,
   # not dependabot.yml. See dependabot-test-custom-registry.yaml for testing.
