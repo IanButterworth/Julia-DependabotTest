@@ -4,9 +4,22 @@ authors = ["Test User <test@example.com>"]
 version = "0.1.0"
 
 [deps]
-JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Example = "7876af07-990d-54b4-ab0e-23690620f79a"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+Parsers = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
 
 [compat]
-JSON = "0.21"
+# WILL UPDATE: 0.4 covers [0.4.0, 0.5.0), latest is 0.5.5
+Example = "0.4"
+# NO UPDATE: 1 covers all 1.x (latest)
+# Issue #13938: should NOT become "^0.20, ^0.21, 1, 1.1"
+JSON = "^0.20, ^0.21, 1"
+# NO UPDATE: major version 1 covers all 1.x (latest is 1.5.0)
+# Issue #13938: should NOT become "1, 1.5"
+OrderedCollections = "1"
+# WILL UPDATE: ^2.5 only covers 2.5.x, latest is 2.8.x
+# Should become "^2.5, ^2.8" or similar
+Parsers = "^2.5"
 julia = "1.10"
