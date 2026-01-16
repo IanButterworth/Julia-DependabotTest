@@ -15,7 +15,7 @@ Example = "0.4"
 # WILL UPDATE: ^0.20, ^0.21 doesn't cover 1.x (latest is 1.0.0+)
 JSON = "^0.20, ^0.21"
 # WILL UPDATE: ~2.5 only covers 2.5.x, latest is 2.8.x
-Parsers = "~2.5"
+Parsers = "~2.5, 2.8"
 # NO UPDATE: major version 1 covers all 1.x (latest is 1.5.0)
 Preferences = "1"
 julia = "1.10"
