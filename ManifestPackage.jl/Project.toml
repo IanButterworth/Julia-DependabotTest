@@ -12,7 +12,7 @@ Parsers = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
 
 [compat]
 # WILL UPDATE: 0.4 covers [0.4.0, 0.5.0), latest is 0.5.5
-Example = "0.4"
+Example = "0.4, 0.5"
 # NO UPDATE: 1 covers all 1.x (latest)
 # Issue #13938: should NOT become "^0.20, ^0.21, 1, 1.1"
 JSON = "^0.20, ^0.21, 1"
