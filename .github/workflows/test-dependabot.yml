@@ -13,6 +13,7 @@ on:
         default: 'dependabot-test-workspace.yaml'
         type: choice
         options:
+          - dependabot-test-breeze.yaml
           - dependabot-test-workspace.yaml
           - dependabot-test-different-compat.yaml
           - dependabot-test.yaml
