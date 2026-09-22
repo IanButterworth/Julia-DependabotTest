@@ -1,0 +1,16 @@
+name = "JLLPackage"
+uuid = "88888888-8888-8888-8888-888888888888"
+authors = ["Test User <test@example.com>"]
+version = "0.1.0"
+
+[deps]
+FreeType2_jll = "d7e528f0-a631-5988-bf34-fe36492bcfd7"
+libpng_jll = "b53b4c65-9356-5827-b1ea-8c7a1a84506f"
+
+[compat]
+# NO UPDATE: the latest release is the rebuild 2.14.3+1, which "=2.14.3" admits
+# (used to become "=2.14.3, 2.14")
+FreeType2_jll = "=2.14.3"
+julia = "1.10"
+# WILL ADD: libpng_jll has no compat entry; the new one must be "1.6.x" with no
+# "+build" suffix, which Pkg rejects

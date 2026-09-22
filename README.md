@@ -17,6 +17,11 @@ This repository contains several Julia packages demonstrating different scenario
 - **DifferentCompatWorkspace.jl** - Workspace testing [issue #13865](https://github.com/dependabot/dependabot-core/issues/13865): same dependency with different compat specifiers in root vs docs/test
   - docs/
   - test/
+- **ExtrasPackage.jl** - `[extras]` handling: a test-only extra with a compat entry (updated), one without (ignored), a stdlib extra, and a package under both `[weakdeps]` and `[extras]` (updated once)
+- **JLLPackage.jl** - JLL build metadata: an exact pin admitted by a rebuild (`=2.14.3` vs `2.14.3+1`) and a JLL with no compat entry, which must get one without a `+build` suffix
+- **UpToDateManifestPackage.jl** - Manifest with a dependency already at its latest release ([issue #16370](https://github.com/dependabot/dependabot-core/issues/16370))
+- **StdlibOrderPackage.jl** - Stdlib compat widened in ascending order, `"<0.0.1, 1"` ([issue #16355](https://github.com/dependabot/dependabot-core/issues/16355))
+- **CooldownPackage.jl** - Cooldown for a dependency without a Manifest version (run with `dependabot-test-cooldown.yaml`)
 
 ## Testing
 
@@ -66,6 +71,8 @@ The repository includes several test configuration files:
 - `dependabot-test.yaml` - Tests multiple individual directories
 - `dependabot-test-workspace.yaml` - Tests workspace configuration with grouped dependencies
 - `dependabot-test-library.yaml` - Tests library-style package (Project.toml only, no Manifest.toml)
+- `dependabot-test-pr16307.yaml` - Extras, JLL, up-to-date Manifest and stdlib ordering cases from [PR #16307](https://github.com/dependabot/dependabot-core/pull/16307)
+- `dependabot-test-cooldown.yaml` - A `default-days: 36500` cooldown, which should hold back every update
 
 For actual GitHub Dependabot usage, see `.github/dependabot.yml`.
 

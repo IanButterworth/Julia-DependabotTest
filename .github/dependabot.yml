@@ -59,3 +59,30 @@ updates:
     directory: "/CustomRegistryPackage.jl"
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/ExtrasPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/JLLPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/UpToDateManifestPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/StdlibOrderPackage.jl"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "julia"
+    directory: "/CooldownPackage.jl"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 36500

@@ -19,6 +19,8 @@ on:
           - dependabot-test.yaml
           - dependabot-test-library.yaml
           - dependabot-test-custom-registry.yaml
+          - dependabot-test-pr16307.yaml
+          - dependabot-test-cooldown.yaml
       test_directory:
         description: 'Override directory to test (leave empty to use config default)'
         required: false
