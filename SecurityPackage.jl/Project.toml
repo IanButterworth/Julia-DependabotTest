@@ -1,0 +1,17 @@
+name = "SecurityPackage"
+uuid = "88888888-8888-8888-8888-888888888888"
+authors = ["Test User <test@example.com>"]
+version = "0.1.0"
+
+[deps]
+OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+
+[compat]
+# Run with dependabot-test-security*.yaml, whose advisories cover
+# OrderedCollections < 1.6.2 and Reexport < 1.1.0.
+# SECURITY UPDATE: manifest has 1.6.0, lowest fix is 1.6.2 (latest is 2.x); "1.6" already admits it
+OrderedCollections = "1.6"
+# SECURITY UPDATE: manifest has 1.0.0, lowest fix is 1.1.0 (latest is 1.2.2)
+Reexport = "1"
+julia = "1.10"

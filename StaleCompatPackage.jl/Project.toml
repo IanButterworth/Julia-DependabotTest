@@ -1,0 +1,14 @@
+name = "StaleCompatPackage"
+uuid = "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+authors = ["Test User <test@example.com>"]
+version = "0.1.0"
+
+[deps]
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+
+[compat]
+# JOB ERROR: Pkg refuses a compat entry for a package in no dependency section.
+# Expect dependency_file_not_parseable naming Gone, not "No Project.toml found".
+Gone = "1"
+Reexport = "1"
+julia = "1.10"
