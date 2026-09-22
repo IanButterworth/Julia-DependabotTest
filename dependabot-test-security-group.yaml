@@ -15,7 +15,12 @@ job:
   dependencies:
   - OrderedCollections
   - Reexport
-  dependency-groups: []
+  dependency-groups:
+  - name: julia-security
+    applies-to: security-updates
+    rules:
+      patterns:
+      - "*"
   dependency-group-to-refresh:
   existing-pull-requests: []
   existing-group-pull-requests: []

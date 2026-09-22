@@ -1,0 +1,21 @@
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.13.0"
+manifest_format = "2.1"
+project_hash = "9a08dd90ac8d984477704127a3e97d94ac0495eb"
+
+[[deps.EqualityCompatPackage]]
+deps = ["Reexport"]
+path = "."
+uuid = "99999999-9999-9999-9999-999999999999"
+version = "0.1.0"
+
+[[deps.Reexport]]
+git-tree-sha1 = "adcd36e8ba9665c88eb0bd156d4e2a19f9b0d889"
+registries = "General"
+uuid = "189a3867-3050-52da-a836-e630ba90ab69"
+version = "1.2.0"
+
+[registries.General]
+url = "https://github.com/JuliaRegistries/General.git"
+uuid = "23338594-aafe-5451-b93e-139f81909106"

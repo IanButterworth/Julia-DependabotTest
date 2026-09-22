@@ -23,7 +23,7 @@ This repository contains several Julia packages demonstrating different scenario
 - **StdlibOrderPackage.jl** - Stdlib compat widened in ascending order, `"<0.0.1, 1"` ([issue #16355](https://github.com/dependabot/dependabot-core/issues/16355))
 - **CooldownPackage.jl** - Cooldown for a dependency without a Manifest version (run with `dependabot-test-cooldown.yaml`)
 - **SecurityPackage.jl** - Security updates move to the lowest fixed release, not the latest; single (`dependabot-test-security.yaml`) and grouped (`dependabot-test-security-group.yaml`), which used to raise `NotImplementedError`
-- **EqualityCompatPackage.jl** - `"=1.2.0, =1.2.2"` is a union in Pkg and admits the latest release, so no update (`dependabot-test-equality-compat.yaml`)
+- **EqualityCompatPackage.jl** - `"=1.2.0, =1.2.2"` is a union in Pkg and admits the latest release, so only the Manifest is updated (`dependabot-test-equality-compat.yaml`)
 - **StaleCompatPackage.jl** - A compat entry for a package in no dependency section: the job reports Pkg's reason rather than "No Project.toml found" (`dependabot-test-stale-compat.yaml`)
 
 ## Testing
