@@ -1,0 +1,6 @@
+[deps]
+Example = "7876af07-990d-54b4-ab0e-23690620f79a"
+SomePackage = "8994c661-768e-4c59-ba1b-477f09d007f8"
+
+[compat]
+Example = "0.4"
