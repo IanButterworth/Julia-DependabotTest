@@ -57,7 +57,7 @@ job:
   source:
     provider: github
     repo: IanButterworth/Julia-DependabotTest
-    branch: julia-pr-16307
+    branch:
     directories:
     - "/ExtrasPackage.jl"
     - "/JLLPackage.jl"

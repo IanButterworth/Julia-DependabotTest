@@ -59,7 +59,7 @@ job:
   source:
     provider: github
     repo: IanButterworth/Julia-DependabotTest
-    branch: julia-pr-16307
+    branch:
     directories:
     - "/CooldownPackage.jl"
     api-endpoint: https://api.github.com/
