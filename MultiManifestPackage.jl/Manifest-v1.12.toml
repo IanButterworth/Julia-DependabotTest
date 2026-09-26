@@ -1,0 +1,16 @@
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.12.7"
+manifest_format = "2.0"
+project_hash = "141991a6ea41f4ac1615a85c6cabbd9a5a4fb933"
+
+[[deps.Example]]
+git-tree-sha1 = "6cb40eba4dd78fc0fa3ebeb8cb7e125ba645be6e"
+uuid = "7876af07-990d-54b4-ab0e-23690620f79a"
+version = "0.4.1"
+
+[[deps.MultiManifestPackage]]
+deps = ["Example"]
+path = "."
+uuid = "44444444-4444-4444-4444-444444444444"
+version = "0.1.0"

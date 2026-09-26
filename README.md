@@ -9,6 +9,7 @@ This repository contains several Julia packages demonstrating different scenario
 - **BasicPackage.jl** - Standard Julia package with Project.toml only
 - **ManifestPackage.jl** - Package with both Project.toml and Manifest.toml
 - **VersionedManifestPackage.jl** - Package with version-specific Manifest-v1.12.toml
+- **MultiManifestPackage.jl** - Package with a Manifest.toml written by Julia 1.10 and a Manifest-v1.12.toml, each to be resolved by its own Julia (`dependabot-test-versioned-manifest.yaml`)
 - **LibraryPackage.jl** - Library-style package (Project.toml only, no Manifest.toml) similar to MetaGraphsNext.jl
 - **WorkspacePackage1.jl** - Workspace with multiple subpackages sharing a manifest
   - SubPackageA
