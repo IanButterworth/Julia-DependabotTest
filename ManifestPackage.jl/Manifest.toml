@@ -2,7 +2,7 @@
 
 julia_version = "1.12.4"
 manifest_format = "2.0"
-project_hash = "0dff97d12d055721abfc5042b142d3b277aaec61"
+project_hash = "0eb9cc059779bc4a03ef43de376fe61eea4113c5"
 
 [[deps.Dates]]
 deps = ["Printf"]
@@ -10,9 +10,9 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 version = "1.11.0"
 
 [[deps.Example]]
-git-tree-sha1 = "6cb40eba4dd78fc0fa3ebeb8cb7e125ba645be6e"
+git-tree-sha1 = "e1f0e1a832ccd8e97d6d0348dec33ee139a5aeaf"
 uuid = "7876af07-990d-54b4-ab0e-23690620f79a"
-version = "0.4.1"
+version = "0.5.5"
 
 [[deps.JSON]]
 deps = ["Dates", "Mmap", "Parsers", "Unicode"]
