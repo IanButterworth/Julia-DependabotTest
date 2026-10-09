@@ -18,7 +18,7 @@ Example = "0.4"
 JSON = "^0.20, ^0.21, 1"
 # NO UPDATE: major version 1 covers all 1.x (latest is 1.5.0)
 # Issue #13938: should NOT become "1, 1.5"
-OrderedCollections = "1"
+OrderedCollections = "1, 2.0"
 # WILL UPDATE: ^2.5 only covers 2.5.x, latest is 2.8.x
 # Should become "^2.5, ^2.8" or similar
 Parsers = "^2.5"
