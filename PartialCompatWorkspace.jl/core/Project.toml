@@ -1,0 +1,12 @@
+name = "SomePackage"
+uuid = "8994c661-768e-4c59-ba1b-477f09d007f8"
+version = "0.1.0"
+
+[workspace]
+projects = ["test"]
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+
+[compat]
+JSON = "0.21"
