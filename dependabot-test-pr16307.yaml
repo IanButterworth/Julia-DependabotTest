@@ -62,7 +62,7 @@ job:
   source:
     provider: github
     repo: IanButterworth/Julia-DependabotTest
-    branch:
+    branch: ib/stdlib-group
     directories:
     - "/StdlibGroupPackage.jl"
     - "/StdlibOrderPackage.jl"
