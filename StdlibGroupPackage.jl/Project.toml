@@ -1,0 +1,17 @@
+name = "StdlibGroupPackage"
+uuid = "99999999-9999-9999-9999-999999999998"
+authors = ["Test User <test@example.com>"]
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Example = "7876af07-990d-54b4-ab0e-23690620f79a"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+
+[compat]
+# WILL UPDATE: grouped with the stdlibs below
+Example = "0.4"
+# WILL UPDATE: Dates, Random and SHA get compat entries; the grouped PR body
+# should give each one a version ("Updates `Dates` to 1.x.y"), not a blank
+julia = "1.12"

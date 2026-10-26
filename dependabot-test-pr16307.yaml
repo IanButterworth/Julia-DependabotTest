@@ -13,7 +13,12 @@ job:
     host: github.com
   debug:
   dependencies:
-  dependency-groups: []
+  dependency-groups:
+  - name: julia
+    applies-to: version-updates
+    rules:
+      patterns:
+      - "*"
   dependency-group-to-refresh:
   existing-pull-requests: []
   existing-group-pull-requests: []
@@ -59,9 +64,7 @@ job:
     repo: IanButterworth/Julia-DependabotTest
     branch:
     directories:
-    - "/ExtrasPackage.jl"
-    - "/JLLPackage.jl"
-    - "/UpToDateManifestPackage.jl"
+    - "/StdlibGroupPackage.jl"
     - "/StdlibOrderPackage.jl"
     api-endpoint: https://api.github.com/
     hostname: github.com
